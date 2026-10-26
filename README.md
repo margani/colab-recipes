@@ -7,7 +7,9 @@ Open any notebook straight from GitHub in Colab; nothing to install.
 
 | Category | Recipe | What it does | Open |
 |---|---|---|---|
-| drive | [download-url-to-drive](notebooks/drive/download-url-to-drive.ipynb) | Download a file from a direct URL straight into Google Drive, check SHA256, extract, rename | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/margani/colab-recipes/blob/main/notebooks/drive/download-url-to-drive.ipynb) |
+| drive | [download-url-to-drive](notebooks/drive/download-url-to-drive.ipynb) | Download a file from a direct URL into Google Drive | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/margani/colab-recipes/blob/main/notebooks/drive/download-url-to-drive.ipynb) |
+| files | [extract-archive](notebooks/files/extract-archive.ipynb) | Extract a zip, 7z or rar archive in Google Drive | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/margani/colab-recipes/blob/main/notebooks/files/extract-archive.ipynb) |
+| files | [verify-sha256](notebooks/files/verify-sha256.ipynb) | Check a Drive file's SHA256 against an expected value | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/margani/colab-recipes/blob/main/notebooks/files/verify-sha256.ipynb) |
 
 ## Adding a recipe
 

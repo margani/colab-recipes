@@ -22,7 +22,7 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 - No explanatory markdown, no instructions, no section numbers, no "(optional)" labels, no emoji headings. The steps are obvious; the form fields explain themselves.
 - Printed messages are short: `Saving to: …`, `✅ Match`, `Enter a URL.`
 - The first step is always `Connect Google Drive` if the recipe touches Drive.
-- Paths to existing files or folders are full paths (`/content/drive/MyDrive/...`, as Colab's file panel copies them); destination folders for downloads are relative to `MyDrive`. Outputs go next to the input (`video-small.mp4`, `scan-ocr.pdf`).
+- Path fields accept a path relative to My Drive, as Drive shows it (`Temp/video.mp4`, `Temp\video.mp4`, `My Drive/Temp/video.mp4`, with or without quotes), or a full `/content/...` path. Every input-path cell normalizes this right after its form fields. Destination folders for downloads are relative to `MyDrive`. Outputs go next to the input (`video-small.mp4`, `scan-ocr.pdf`).
 - An empty required field stops with a short message (`Enter a file path.`), not a traceback.
 - Every user-supplied value is a Colab form field (`#@param`) at the top of its cell, and every code cell has `#@title` and `"cellView": "form"` metadata.
 - Cells must be safe to re-run (use `wget -c`, `mkdir -p`, `exist_ok=True`, and guard steps that move or rename files).
@@ -41,3 +41,4 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 
 ## Lessons
 - 2026-10-26: The first version had Persian, chatty markdown with numbered sections and bundled download, verify, extract and rename in one notebook. The owner wanted English, bare step titles and one job per notebook. The rules above come from that review.
+- 2026-10-26: compress-video failed with `Not a file: Temp\video_….mp4` because input paths had to be full `/content/drive/MyDrive/...` paths. Users type paths relative to My Drive, often with Windows backslashes; test path fields with that form, not only full paths.

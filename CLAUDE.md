@@ -5,9 +5,9 @@ This repo is a small library of Google Colab notebooks, one job each. Keep it si
 The repo is **public** (`margani/colab-recipes`). Anything committed, including history, is visible to everyone.
 
 ## Structure
-- `notebooks/<category>/<kebab-case-name>.ipynb` — one recipe per file. Categories are short nouns: `drive`, `media`, `files`, `data`, `web`.
+- `notebooks/<category>/<kebab-case-name>.ipynb` — one recipe per file. Categories are short nouns: `drive`, `files`, `media`, `pdf`, `web`, `data`. A new category needs a new folder and a new README section.
 - `templates/recipe-template.ipynb` — start every new recipe from this.
-- `README.md` — the index. Every recipe must have a row with an "Open in Colab" badge (`https://colab.research.google.com/github/margani/colab-recipes/blob/main/<path>`). The description column is one short line.
+- `README.md` — the index, one `## <category>` section per category folder, in the same order. Every recipe must have a row in its category's table with an "Open in Colab" badge (`https://colab.research.google.com/github/margani/colab-recipes/blob/main/<path>`). The description column is one short line.
 
 ## One job per notebook
 - A notebook does exactly one job. A follow-up task (verify a checksum, extract an archive, convert a file) is its own recipe, not an extra step in another notebook.
@@ -22,6 +22,8 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 - No explanatory markdown, no instructions, no section numbers, no "(optional)" labels, no emoji headings. The steps are obvious; the form fields explain themselves.
 - Printed messages are short: `Saving to: …`, `✅ Match`, `Enter a URL.`
 - The first step is always `Connect Google Drive` if the recipe touches Drive.
+- Paths to existing files or folders are full paths (`/content/drive/MyDrive/...`, as Colab's file panel copies them); destination folders for downloads are relative to `MyDrive`. Outputs go next to the input (`video-small.mp4`, `scan-ocr.pdf`).
+- An empty required field stops with a short message (`Enter a file path.`), not a traceback.
 - Every user-supplied value is a Colab form field (`#@param`) at the top of its cell, and every code cell has `#@title` and `"cellView": "form"` metadata.
 - Cells must be safe to re-run (use `wget -c`, `mkdir -p`, `exist_ok=True`, and guard steps that move or rename files).
 - Strip outputs before committing (`"outputs": []`, `"execution_count": null`); outputs can leak Drive paths and file names into the public repo.
@@ -34,7 +36,7 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 3. Validate JSON: `python -c "import json,sys;json.load(open(sys.argv[1]))" <file>`.
 4. Check the rules above on every notebook: one top markdown cell, then code cells only, each with `#@title` and form view, empty outputs, no non-English text.
 5. Run changed cell code locally where it doesn't need Colab (hashing, renaming, path logic) with test files, twice, to prove it is re-run safe.
-6. Update the README index row, and check every badge path exists on `main` after merge.
+6. Update the README row in its category section, and check every badge path exists on `main` after merge.
 7. Update the dashboard status file (`~/projects/personal/projects-dashboard/status/colab-recipes.json`) as `STATUS_INSTRUCTIONS.md` describes.
 
 ## Lessons

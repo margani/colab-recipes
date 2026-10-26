@@ -8,11 +8,10 @@ This repo is a small library of Google Colab notebooks, one job each. Keep it si
 - `README.md` — the index. Every recipe must have a row with an "Open in Colab" badge (`https://colab.research.google.com/github/<user>/colab-recipes/blob/main/<path>`).
 
 ## Notebook rules
-- Markdown cells are in Persian. Every Persian line must start with a Persian letter (not an emoji, number or Latin word) so RTL renders correctly; put emoji at the end of the line.
-- Code, variable names and comments are in English.
+- Everything is in English: markdown cells, `#@title` labels, printed messages, code and comments. Keep text short and plain, not chatty.
 - Section 1 is always "mount Google Drive" if the recipe touches Drive.
 - Every user-supplied value is a Colab form field (`#@param`) at the top of its cell, and every code cell has `#@title` and `"cellView": "form"` metadata.
-- Sections are numbered (`## ۱.`, `## ۲.`), optional ones say so.
+- Sections are numbered (`## 1.`, `## 2.`); optional ones end with `(optional)`.
 - Cells must be safe to re-run (use `wget -c`, `mkdir -p`, `exist_ok=True`).
 - Strip outputs before committing (`"outputs": []`, `"execution_count": null`).
 - No secrets in notebooks. If a token is needed, read it with `google.colab.userdata.get(...)` (Colab Secrets).

@@ -29,6 +29,7 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 - Strip outputs before committing (`"outputs": []`, `"execution_count": null`); outputs can leak Drive paths and file names into the public repo.
 - `metadata.colab.name` equals the file name.
 - No secrets in notebooks. If a token is needed, read it with `google.colab.userdata.get(...)` (Colab Secrets).
+- A command that takes a URL, a path or any form value runs through `subprocess.run([...])` with an argument list (put `--` before a URL), never a `!` line with `{var}`: the shell still runs `$(...)`, backticks and `"` inside double quotes. `!` lines are only for fixed commands (`!pip install`, `!apt-get install`, `!df`). End a cell's last `subprocess.run(...)` line with `;` so Colab doesn't print `CompletedProcess`.
 
 ## When adding or changing a recipe
 1. Open an issue, then a branch, then a PR that says `Closes #n`. Squash-merge it yourself once checks pass, then delete the branch.
@@ -42,3 +43,4 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 ## Lessons
 - 2026-10-26: The first version had Persian, chatty markdown with numbered sections and bundled download, verify, extract and rename in one notebook. The owner wanted English, bare step titles and one job per notebook. The rules above come from that review.
 - 2026-10-26: compress-video failed with `Not a file: Temp\video_….mp4` because input paths had to be full `/content/drive/MyDrive/...` paths. Users type paths relative to My Drive, often with Windows backslashes; test path fields with that form, not only full paths.
+- 2026-11-02: A security audit found that links and file names with `$(...)` in them ran as shell commands through `!wget "{url}"`-style lines (some file names come from third parties: yt-dlp titles, archives, torrents). download-url-to-drive also decoded `%2F` after taking the basename, so a link could write outside the chosen folder. Fixed in #14; the argument-list rule above comes from it.

@@ -40,6 +40,9 @@ The repo is **public** (`margani/colab-recipes`). Anything committed, including 
 6. Update the README row in its category section, and check every badge path exists on `main` after merge.
 7. Update the dashboard status file (`~/projects/personal/projects-dashboard/status/colab-recipes.json`) as `STATUS_INSTRUCTIONS.md` describes.
 
+## Model use
+This project runs on Sonnet. Do routine work (small edits, tests, git, status files, reading) yourself. For a heavy step (design of a new feature, hard debugging after one failed attempt, a security or architecture review, a large refactor, an audit across many files) delegate that step to a subagent with the Agent tool and model "opus", then use its result. Say in one line when you delegate and why. (Owner decision 2026-11-10.)
+
 ## Lessons
 - 2026-10-26: The first version had Persian, chatty markdown with numbered sections and bundled download, verify, extract and rename in one notebook. The owner wanted English, bare step titles and one job per notebook. The rules above come from that review.
 - 2026-10-26: compress-video failed with `Not a file: Temp\video_….mp4` because input paths had to be full `/content/drive/MyDrive/...` paths. Users type paths relative to My Drive, often with Windows backslashes; test path fields with that form, not only full paths.
